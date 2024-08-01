@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Add Page</title>
+{% endblock %}
+{% block content %}
+    <div class="bg-dark text-warning w-75 mx-auto p-3">
+    <h4 class="text-center">ToDo Task Form</h4>
+    <form method="post" class="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ADD" class="btn btn-primary col-3 ">
+        <input type="reset" class="btn btn-warning col-3 float-end ">
+    </form>
+    </div>
+{% endblock %}

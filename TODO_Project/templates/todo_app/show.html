@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Show Task Details</title>
+{% endblock %}
+{% block content %}
+    <table class="table table-success table-striped mx-auto">
+        <thead class="table table-dark">
+            <tr>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Task Status</th>
+                <th>Task Deadline</th>
+                <th>Task Created_date</th>
+                <th>Task Completed</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in Todo_Task %}
+            <tr>
+                <td>{{ todo.task_name }}</td>
+                <td>{{ todo.task_description }}</td>
+                <td>{{ todo.task_status }}</td>
+                <td>{{ todo.task_deadline }}</td>
+                <td>{{ todo.task_created_date }}</td>
+                    {% if todo.task_status == 'Complated' %}
+                        <td>{{todo.task_completed}}</td>
+                    {%else%}
+                         <td>Not Completed</td>
+                    {% endif %}
+            <td>
+              {% if todo.task_status != 'Complated' %}
+                <a href="{% url 'update_url' todo.pk %}" class="btn btn-outline-warning">Update</a>
+              {% endif %}
+              <a href="{% url 'delete_url' todo.pk %}" class="btn btn-outline-danger">Delete</a>
+            </td>
+          </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
